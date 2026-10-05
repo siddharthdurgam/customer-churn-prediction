@@ -1,8 +1,8 @@
 # 🧠 Customer Churn Prediction & Retention Strategy
 
-An end-to-end telecom customer churn analytics project combining **Python, machine learning, DVC/MLflow concepts, and Power BI** to identify customers at risk of leaving and support retention decisions.
+An end-to-end telecom customer churn analytics project combining **Python, machine learning, MLflow/DVC concepts, and Power BI** to identify customers at risk of leaving and support retention decisions.
 
-> **Repository safety:** This GitHub version contains **no local SQL Server hostname, database name, Windows username, credentials, or machine-specific connection details**. The raw dataset is also not included.
+> **Repository safety:** This public GitHub version contains no local SQL Server hostname, database name, Windows username, credentials, or machine-specific connection details. The raw customer dataset is also excluded.
 
 ## 🎯 Objective
 
@@ -10,12 +10,13 @@ Predict customer churn and analyze churn patterns across demographics, tenure, c
 
 ## 📌 Project Highlights
 
-- Data preparation and feature encoding with Python
+- Data preparation and categorical feature encoding with Python
 - Class-imbalance handling using **SMOTE**
-- Machine-learning workflow designed for multiple classification models
-- Experiment tracking / model evaluation architecture using **MLflow**
-- Interactive **Power BI** dashboards for business analysis
-- Churn-risk customer output for retention-focused decision making
+- Train/test workflow designed to avoid applying SMOTE to the test set
+- Multi-model classification workflow
+- Evaluation using accuracy, precision, recall, F1 and confusion matrix
+- MLflow-oriented experiment tracking workflow
+- Power BI dashboards for business analysis and churn-risk exploration
 
 ## 🤖 Models Referenced
 
@@ -25,19 +26,21 @@ Predict customer churn and analyze churn patterns across demographics, tenure, c
 - LightGBM
 - K-Nearest Neighbors
 
-The supplied project documentation identifies **LightGBM on the balanced dataset** as the selected model, with an F1 score of **0.90 for the churned class**.
+The supplied project materials identify **LightGBM on the balanced dataset** as the selected configuration, with an F1 score of **0.90 for the churned class**.
 
 ## 🗂️ Repository Structure
 
 ```text
 customer-churn-prediction/
-├── notebooks/Churn_Prediction.ipynb
+├── notebooks/
+│   └── Churn_Prediction.ipynb
 ├── src/
 │   ├── data_preprocessing.py
 │   ├── balance_data.py
 │   └── evaluate.py
-├── data/raw/README.md
-├── data/processed/README.md
+├── data/
+│   ├── raw/README.md
+│   └── processed/README.md
 ├── models/README.md
 ├── Power BI Dashboard/README.md
 ├── docs/README.md
@@ -48,23 +51,37 @@ customer-churn-prediction/
 
 ## 🔄 Workflow
 
-1. Obtain/export the churn dataset as CSV.
-2. Place it at `data/raw/churn_data.csv`.
+1. Export/obtain the churn dataset as CSV.
+2. Place it at `data/raw/churn_data.csv` locally.
 3. Run `notebooks/Churn_Prediction.ipynb`.
-4. Preprocess categorical features and split the data.
-5. Apply SMOTE **only to the training data** when balancing is required.
-6. Train and compare classification models.
-7. Evaluate using precision, recall, F1 and confusion matrix.
-8. Feed churn outputs into Power BI.
-9. Use high-risk customer segments to support retention actions.
+4. Encode categorical variables and prepare features/target.
+5. Split the data into training and testing sets.
+6. Apply SMOTE to the **training split only** when balancing is required.
+7. Train and compare classification models.
+8. Evaluate predictions with classification metrics.
+9. Generate churn-risk predictions for business analysis.
+10. Present customer and segment insights through Power BI.
 
-## 📊 Dashboard
+## 📊 Power BI Dashboard
 
-The project includes Power BI dashboard previews in the working package. The editable `.pbix` file can be added separately if you choose to publish it.
+The project dashboard design covers:
+
+- Overall customer and churn KPIs
+- Churn by gender and age group
+- Churn by tenure group
+- Churn by payment method
+- Churn by contract
+- Churn rate by state
+- Churn rate by internet type
+- Service-level churn analysis
+- Predicted churner profile
+- Customer-level predicted-risk table
+
+The editable `.pbix` file is intentionally not included yet. Dashboard preview images can be added separately when binary-file upload is available.
 
 ## 🛠️ Tech Stack
 
-Python • Pandas • NumPy • Scikit-learn • SMOTE • XGBoost • LightGBM • MLflow • DVC • Power BI
+**Python · Pandas · NumPy · Scikit-learn · imbalanced-learn · XGBoost · LightGBM · MLflow · DVC · Power BI**
 
 ## ▶️ Setup
 
@@ -74,38 +91,58 @@ cd customer-churn-prediction
 python -m venv .venv
 ```
 
-Windows:
+### Windows
+
 ```bash
 .venv\\Scripts\\activate
 ```
 
-Linux/macOS:
+### Linux / macOS
+
 ```bash
 source .venv/bin/activate
 ```
 
 Install dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
 
-Then place the source CSV at:
+Then place the source CSV locally at:
+
 ```text
 data/raw/churn_data.csv
 ```
 
+Open:
+
+```text
+notebooks/Churn_Prediction.ipynb
+```
+
 ## 🔐 Data & Privacy
 
-The original project used a database-backed workflow. For this public GitHub repository, database connection details have been removed from the notebook and Python modules.
+The original workflow used a database-backed data source. For this public repository, machine-specific database connection details have been removed from the notebook and Python modules.
 
-Do **not** commit database credentials, internal hostnames, connection strings, customer PII, production datasets, `.env` files, or local machine paths.
+Do **not** commit:
+
+- Database credentials
+- Internal hostnames
+- Connection strings
+- Customer PII
+- Production datasets
+- `.env` files
+- Local machine paths
 
 ## 📈 Reported Model Result
 
-The project documentation reports **LightGBM + balanced dataset** as the selected configuration, with **0.90 F1 score for the churned class**. This is presented as a project result from the supplied materials; it is not re-generated by this packaging step.
+The supplied project materials report **LightGBM + balanced dataset** as the selected configuration, with **0.90 F1 for the churned class**. This is presented as a project result from the supplied materials and is not re-generated by the GitHub packaging step.
 
 ## 👤 Author
 
 **D. Siddharth Patel**
+
+GitHub: [@siddharthdurgam](https://github.com/siddharthdurgam)
 
 ⭐ If you find this project useful, feel free to star the repository.
