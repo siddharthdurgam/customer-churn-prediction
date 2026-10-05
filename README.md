@@ -2,6 +2,7 @@
 
 > **End-to-end telecom churn analytics and machine-learning project for identifying at-risk customers and supporting retention decisions.**
 
+![CI](https://github.com/siddharthdurgam/customer-churn-prediction/actions/workflows/tests.yml/badge.svg)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Scikit Learn](https://img.shields.io/badge/Scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
 ![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
@@ -9,16 +10,14 @@
 
 ## 🎯 Objective
 
-Predict customer churn and identify the factors associated with customers leaving a telecom service. The project combines **data preprocessing, class-imbalance handling, multiple classification models, evaluation, and business-focused dashboard analysis**.
+Predict customer churn and identify the factors associated with customers leaving a telecom service. The project combines **data preprocessing, class-imbalance handling, multiple classification models, evaluation, automated tests, and business-focused dashboard analysis**.
 
 ## 💼 Business Value
 
-The project is designed to help answer:
-
-- Which customers are most likely to churn?
-- Which contracts, payment methods, services, and tenure groups have higher churn?
-- Which customer segments require retention attention?
-- How can predicted churn risk support targeted retention strategies?
+- Identify customers with higher churn risk.
+- Understand the drivers and segments associated with churn.
+- Prioritize retention opportunities.
+- Translate model outputs into actionable business insights.
 
 ## 🔬 Machine Learning Workflow
 
@@ -56,49 +55,34 @@ The supplied project materials identify **LightGBM on the balanced dataset** as 
 
 ## 📊 Evaluation
 
-The workflow considers:
+The workflow considers Accuracy, Precision, Recall, F1 Score and Confusion Matrix, with special attention to the churn class.
 
-- Accuracy
-- Precision
-- Recall
-- F1 Score
-- Confusion Matrix
+## 🧪 Automated Validation
 
-Special attention is given to the churn class because correctly identifying potential churners is more useful for retention decisions than relying on accuracy alone.
+The repository includes automated tests for preprocessing, SMOTE balancing and evaluation helpers. GitHub Actions runs the test suite on repository changes.
 
 ## 📊 Power BI Analysis
 
-The dashboard concept includes:
-
-- Customer and churn KPIs
-- Churn by gender and age group
-- Churn by tenure
-- Churn by payment method
-- Churn by contract
-- Churn by state
-- Churn by internet type
-- Service-level churn analysis
-- Predicted churner profile
-- Customer-level predicted-risk analysis
+The dashboard concept includes customer and churn KPIs, churn by demographics, tenure, payment method, contract, geography, internet type and service-level analysis, together with predicted-risk views.
 
 ## 🗂️ Repository Structure
 
 ```text
 customer-churn-prediction/
+├── .github/workflows/tests.yml
 ├── notebooks/
 │   └── Churn_Prediction.ipynb
 ├── src/
 │   ├── data_preprocessing.py
 │   ├── balance_data.py
 │   └── evaluate.py
+├── tests/
+│   └── test_pipeline.py
 ├── data/
-│   ├── raw/README.md
-│   └── processed/README.md
-├── models/README.md
-├── Power BI Dashboard/README.md
-├── docs/README.md
+├── models/
+├── Power BI Dashboard/
+├── docs/
 ├── requirements.txt
-├── .gitignore
 └── README.md
 ```
 
@@ -108,48 +92,25 @@ customer-churn-prediction/
 git clone https://github.com/siddharthdurgam/customer-churn-prediction.git
 cd customer-churn-prediction
 python -m venv .venv
-```
-
-Activate the environment and install dependencies:
-
-```bash
 pip install -r requirements.txt
+pytest
 ```
 
-Place the source dataset locally at:
-
-```text
-data/raw/churn_data.csv
-```
-
-Then open:
-
-```text
-notebooks/Churn_Prediction.ipynb
-```
+Place the source dataset locally at `data/raw/churn_data.csv`, then open `notebooks/Churn_Prediction.ipynb`.
 
 ## 🔐 Data & Privacy
 
-This public repository is intentionally packaged without local SQL Server hostnames, database names, credentials, Windows usernames, machine-specific paths, customer PII, or production connection strings.
+The public repository is packaged without local SQL Server hostnames, credentials, machine-specific paths, customer PII, or production connection strings.
 
-**Never commit:**
-
-- Credentials or API keys
-- Database connection strings
-- Internal hostnames
-- Customer PII
-- Production datasets
-- `.env` files
-- Machine-specific paths
+**Never commit credentials, API keys, database connection strings, internal hostnames, customer PII, production datasets, `.env` files, or machine-specific paths.**
 
 ## 🚀 Future Improvements
 
-- Add a reproducible model-training pipeline
-- Add automated model comparison
-- Add explainability with SHAP
-- Add automated tests
-- Add deployment/API layer
-- Add refreshed Power BI dashboard assets
+- Add a reproducible model-training pipeline.
+- Add automated model comparison.
+- Add SHAP-based explainability.
+- Add deployment/API layer.
+- Add refreshed Power BI dashboard assets.
 
 ## 👤 Author
 
